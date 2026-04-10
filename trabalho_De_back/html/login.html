@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — GestãoPro</title>
+    <link rel="stylesheet" href="/TRABALHO_DE_BACK/css/login.css">
+    <style>
+        .login-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .login-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 400px;
+        }
+        .login-box .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .login-box h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1.8rem;
+            letter-spacing: -0.5px;
+        }
+    </style>
+</head>
+<body>
+<div class="login-wrapper">
+    <div class="login-box">
+        <span class="logo">⬡ GestãoPro</span>
+        <h1>Entrar na conta</h1>
+
+        <div id="msg-container"></div>
+
+        <form action="/TRABALHO_DE_BACK/php/login.php" method="post">
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" name="email" placeholder="email@exemplo.com" required>
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" name="senha" placeholder="Sua senha" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:0.5rem;">
+                Entrar
+            </button>
+        </form>
+
+        <div style="margin-top:1.5rem;text-align:center;font-size:0.88rem;color:var(--muted);">
+            Não tem conta? <a href="/TRABALHO_DE_BACK/html/cadastro.html" style="color:var(--accent);text-decoration:none;font-weight:700;">Cadastre-se</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const container = document.getElementById('msg-container');
+    if (params.get('erro')) {
+        container.innerHTML = `<div class="alert alert-danger">${params.get('erro')}</div>`;
+    }
+    if (params.get('msg')) {
+        container.innerHTML = `<div class="alert alert-success">${params.get('msg')}</div>`;
+    }
+</script>
+</body>
+</html>

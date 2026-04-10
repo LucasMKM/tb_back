@@ -1,0 +1,55 @@
+<?php
+$titulo = "Nova Empresa";
+require_once __DIR__ . '/nav.php';
+?>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Nova <span>Empresa</span></h1>
+        <a href="/TRABALHO_DE_BACK/php/minhas_empresas.php" class="btn btn-secondary">← Voltar</a>
+    </div>
+
+    <?php if (isset($_GET['erro'])): ?>
+        <div class="alert alert-danger"><?= htmlspecialchars($_GET['erro']) ?></div>
+    <?php endif; ?>
+
+    <div class="form-card">
+        <form action="/TRABALHO_DE_BACK/php/inserir_empresa.php" method="post">
+            <div class="form-group">
+                <label>Nome da empresa</label>
+                <input type="text" name="nome" placeholder="Ex: Tech Solutions Ltda" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Natureza Jurídica</label>
+                    <select name="natureza_juridica" required>
+                        <option value="">-- Selecione --</option>
+                        <option value="MEI">MEI</option>
+                        <option value="ME">ME</option>
+                        <option value="EPP">EPP</option>
+                        <option value="LTDA">LTDA</option>
+                        <option value="S.A.">S.A.</option>
+                        <option value="EIRELI">EIRELI</option>
+                        <option value="SLU">SLU</option>
+                        <option value="ONG">ONG</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Código Secreto <small style="text-transform:none;font-weight:400;color:var(--muted)">(3 caracteres)</small></label>
+                    <input type="text" name="codigo_secreto" maxlength="3" minlength="3"
+                           placeholder="Ex: A1B" style="font-family:'Space Mono',monospace;letter-spacing:4px;" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Endereço</label>
+                <input type="text" name="endereco" placeholder="Ex: Rua das Flores, 123 – Porto Alegre/RS" required>
+            </div>
+            <div style="display:flex;gap:0.8rem;">
+                <button type="submit" class="btn btn-primary">Cadastrar Empresa</button>
+                <a href="/TRABALHO_DE_BACK/php/minhas_empresas.php" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
